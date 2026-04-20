@@ -1,0 +1,213 @@
+[
+    {
+        "id": 1,
+        "title": "Fourth Wing",
+        "author": "Rebecca Yarros",
+        "genre": "Romance",
+        "desc": "Violet Sorrengail is sent to a deadly dragon-rider war college in this epic enemies-to-lovers fantasy."
+    },
+    {
+        "id": 2,
+        "title": "A Court of Thorns and Roses",
+        "author": "Sarah J. Maas",
+        "genre": "Horror",
+        "desc": "A huntress is taken to a magical fae land in this sweeping Beauty and the Beast retelling."
+    },
+    {
+        "id": 3,
+        "title": "The Midnight Library",
+        "author": "Matt Haig",
+        "genre": "Action",
+        "desc": "A library between life and death offers infinite chances to live a different life."
+    },
+    {
+        "id": 4,
+        "title": "The Familiar",
+        "author": "Leigh Bardugo",
+        "genre": "Biography",
+        "desc": "A servant in 1490s Spain makes a desperate magical bargain to survive the Inquisition."
+    },
+    {
+        "id": 5,
+        "title": "The Life Impossible",
+        "author": "Matt Haig",
+        "genre": "Fantasy",
+        "desc": "A retired teacher travels to Ibiza and uncovers a supernatural mystery tied to a missing friend."
+    },
+    {
+        "id": 6,
+        "title": "Happy Place",
+        "author": "Emily Henry",
+        "genre": "Horror",
+        "desc": "A recently separated couple must pretend they are still together during their annual friend trip in Maine."
+    },
+    {
+        "id": 7,
+        "title": "Book Lovers",
+        "author": "Emily Henry",
+        "genre": "Biography",
+        "desc": "A cutthroat literary agent and a small-town editor keep crossing paths in this witty love story."
+    },
+    {
+        "id": 8,
+        "title": "Icebreaker",
+        "author": "Hannah Grace",
+        "genre": "Fantasy",
+        "desc": "A figure skater and a hockey captain are forced to share a rink and slowly fall for each other."
+    },
+    {
+        "id": 9,
+        "title": "Tomorrow and Tomorrow",
+        "author": "Gabrielle Zevin",
+        "genre": "Action",
+        "desc": "Two childhood friends reunite to make video games and navigate love across three decades."
+    },
+    {
+        "id": 10,
+        "title": "Intermezzo",
+        "author": "Sally Rooney",
+        "genre": "Romance",
+        "desc": "Two grieving brothers navigate very different love affairs after the death of their father."
+    },
+    {
+        "id": 11,
+        "title": "Holly",
+        "author": "Stephen King",
+        "genre": "Biography",
+        "desc": "PI Holly Gibney investigates disappearances and uncovers a shocking evil hiding in a college town."
+    },
+    {
+        "id": 12,
+        "title": "The Hollow Kind",
+        "author": "Andy Davidson",
+        "genre": "Fantasy",
+        "desc": "A woman inherits her grandfather's Georgia farm only to discover a monstrous ancient evil buried in the pines."
+    },
+    {
+        "id": 13,
+        "title": "The Troop",
+        "author": "Nick Cutter",
+        "genre": "Romance",
+        "desc": "A scoutmaster leads five boys to an isolated island where a terrifying stranger arrives and spreads a nightmare."
+    },
+    {
+        "id": 14,
+        "title": "Plain Bad Heroines",
+        "author": "Emily M. Danforth",
+        "genre": "Action",
+        "desc": "A gothic horror weaving two timelines around a cursed all-girls school and a swarm of yellow jackets."
+    },
+    {
+        "id": 15,
+        "title": "The Whisper Man",
+        "author": "Alex North",
+        "genre": "Horror",
+        "desc": "A grieving father moves to a new town only to find a killer from the past is still whispering to children."
+    },
+    {
+        "id": 16,
+        "title": "James",
+        "author": "Percival Everett",
+        "genre": "Fantasy",
+        "desc": "A Pulitzer Prize-winning reimagining of Huckleberry Finn told through the eyes of Jim, exploring freedom and identity."
+    },
+    {
+        "id": 17,
+        "title": "Demon Copperhead",
+        "author": "Barbara Kingsolver",
+        "genre": "Biography",
+        "desc": "A Pulitzer Prize winner retelling David Copperfield set in Appalachian Virginia amid the opioid crisis."
+    },
+    {
+        "id": 18,
+        "title": "The Accountant",
+        "author": "Nicholas Searle",
+        "genre": "Romance",
+        "desc": "A man living a double life as a contract killer faces the collision of his two worlds in this taut thriller."
+    },
+    {
+        "id": 19,
+        "title": "Reaper",
+        "author": "Mark Greaney",
+        "genre": "Horror",
+        "desc": "Court Gentry, the Gray Man, takes on a series of impossible assassinations across Europe."
+    },
+    {
+        "id": 20,
+        "title": "The Covenant",
+        "author": "James Patterson",
+        "genre": "Action",
+        "desc": "A team of elite operatives uncover a global conspiracy that threatens to ignite a world war."
+    },
+    {
+        "id": 21,
+        "title": "The Women",
+        "author": "Kristin Hannah",
+        "genre": "Action",
+        "desc": "A young woman joins the Army Nurse Corps during Vietnam and confronts war, loss, and a difficult homecoming."
+    },
+    {
+        "id": 22,
+        "title": "The Covenant of Water",
+        "author": "Abraham Verghese",
+        "genre": "Fantasy",
+        "desc": "A 77-year saga of three generations of a South Indian family exploring love, loss, and medicine."
+    },
+    {
+        "id": 23,
+        "title": "Hello Beautiful",
+        "author": "Ann Napolitano",
+        "genre": "Horror",
+        "desc": "A Pulitzer Prize-winning multigenerational Chicago family saga tracing the echoes of one painful abandonment."
+    },
+    {
+        "id": 24,
+        "title": "Educated",
+        "author": "Tara Westover",
+        "genre": "Romance",
+        "desc": "A woman raised by survivalists in rural Idaho educates herself and escapes to Cambridge against all odds."
+    },
+    {
+        "id": 25,
+        "title": "Spare",
+        "author": "Prince Harry",
+        "genre": "Biography",
+        "desc": "Prince Harry recounts his life inside the royal family, his grief over his mother, and his path to freedom."
+    },
+    {
+        "id": 26,
+        "title": "Bringing Down the House",
+        "author": "Ben Mezrich",
+        "genre": "Fantasy",
+        "desc": "The true story of six MIT students who mastered card counting and took Vegas casinos for millions in blackjack."
+    },
+    {
+        "id": 27,
+        "title": "The Gambler",
+        "author": "Fyodor Dostoevsky",
+        "genre": "Action",
+        "desc": "A young tutor spirals into obsessive roulette addiction while entangled in a web of love and debt at a German resort."
+    },
+    {
+        "id": 28,
+        "title": "Loaded Dice",
+        "author": "John Soares",
+        "genre": "Biography",
+        "desc": "A former casino cheater exposes the tricks, scams, and cons used by both players and the house in Las Vegas."
+    },
+    {
+        "id": 29,
+        "title": "Poker Face",
+        "author": "Katy Lederer",
+        "genre": "Horror",
+        "desc": "A memoir of growing up in a Las Vegas gambling family, where poker chips replaced conversation and risk was a way of life."
+    },
+    {
+        "id": 30,
+        "title": "The Biggest Bluff",
+        "author": "Maria Konnikova",
+        "genre": "Romance",
+        "desc": "A psychologist learns poker from a world champion and uses the high-stakes table to decode luck, skill, and decision-making."
+    }
+   
+]

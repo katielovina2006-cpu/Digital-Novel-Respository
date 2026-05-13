@@ -195,6 +195,30 @@ body {
 .main-content { padding: 22px 28px 48px; }
 @keyframes fadeSlideIn { from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);} }
 
+/* ── BACK BREADCRUMB ── */
+.back-bar {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 18px; padding: 10px 14px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  animation: fadeSlideIn 0.35s ease both;
+}
+.back-btn {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  color: var(--text2); font-size: 11px; font-weight: 700;
+  padding: 6px 13px; border-radius: 8px; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.back-btn:hover { background: var(--gold); color: #000; border-color: transparent; transform: translateX(-2px); }
+.back-btn .back-arrow { font-size: 13px; }
+.breadcrumb-trail { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text3); }
+.breadcrumb-trail .bc-item { color: var(--text3); cursor: pointer; transition: color 0.2s; }
+.breadcrumb-trail .bc-item:hover { color: var(--gold); text-decoration: underline; }
+.breadcrumb-trail .bc-sep { color: var(--text3); opacity: 0.4; }
+.breadcrumb-trail .bc-current { color: var(--text2); font-weight: 600; }
+
 /* ── TOPBAR ── */
 .topbar { display:flex; align-items:center; gap:10px; margin-bottom:22px; }
 .search-box { flex:1; position:relative; }
@@ -335,8 +359,6 @@ body {
 .author-books-info{flex:1;}
 .author-books-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:3px;}
 .author-books-meta{font-size:11px;color:var(--text3);}
-.author-books-back{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:7px 14px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;display:flex;align-items:center;gap:5px;flex-shrink:0;}
-.author-books-back:hover{background:var(--card2);border-color:var(--border2);color:var(--text);}
 
 /* ── GENRES ── */
 .genres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
@@ -552,6 +574,18 @@ body {
 .stat-box-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--gold);}
 .stat-box-lbl{font-size:8.5px;color:var(--text3);margin-top:2px;}
 
+/* ── GENRE FILTER RESULTS ── */
+#genreFilterBanner {
+  display: none; align-items: center; gap: 10px;
+  background: rgba(232,197,71,0.06); border: 1px solid rgba(232,197,71,0.18);
+  border-radius: var(--radius-sm); padding: 9px 14px; margin-bottom: 14px;
+  font-size: 11px; color: var(--text2);
+}
+#genreFilterBanner.show { display: flex; }
+#genreFilterBanner strong { color: var(--gold); }
+.clear-filter-btn { margin-left: auto; background: var(--bg3); border: 1px solid var(--border2); color: var(--text3); font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; }
+.clear-filter-btn:hover { background: var(--card2); color: var(--text); }
+
 /* ── RESPONSIVE ── */
 @media(max-width:1200px){.popular-grid{grid-template-columns:repeat(4,1fr);}.subjects-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:900px){.popular-grid{grid-template-columns:repeat(3,1fr);}.subjects-grid{grid-template-columns:repeat(2,1fr);}.fav-grid{grid-template-columns:repeat(3,1fr);}.authors-grid{grid-template-columns:repeat(3,1fr);}.genres-grid{grid-template-columns:repeat(2,1fr);}}
@@ -672,13 +706,12 @@ body {
 
   <!-- AUTHORS VIEW -->
   <div class="page-view" id="view-authors">
-    <div class="page-head"><div class="page-head-title">Writers & <em>Authors</em></div></div>
-    <!-- Authors list -->
     <div id="authorsMainView">
+      <div class="page-head"><div class="page-head-title">Writers & <em>Authors</em></div></div>
       <div class="authors-grid" id="authorsGrid"></div>
     </div>
-    <!-- Author books sub-view -->
     <div id="authorBooksView" style="display:none;">
+      <!-- Back bar + header injected dynamically -->
       <div class="author-books-header" id="authorBooksHeader"></div>
       <div class="sec-header" style="margin-bottom:13px;">
         <div class="sec-title" id="authorBooksSectionTitle">Books by this Author</div>
@@ -714,9 +747,13 @@ body {
 
   <!-- LIBRARY VIEW -->
   <div class="page-view" id="view-library">
-    <div class="sec-header" style="margin-bottom:18px;">
+    <div class="sec-header" style="margin-bottom:10px;">
       <div class="page-head-title" style="margin:0;">Full <em>Library</em></div>
       <button onclick="openAddModal()" style="background:var(--gold);color:#000;border:none;padding:8px 16px;border-radius:9px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">+ Add Novel</button>
+    </div>
+    <div id="genreFilterBanner">
+      <span>Showing: <strong id="genreFilterLabel"></strong></span>
+      <button class="clear-filter-btn" onclick="clearGenreFilter()">✕ Show All</button>
     </div>
     <div class="popular-grid" id="libraryGrid"></div>
   </div>
@@ -856,6 +893,22 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
+// ── NAVIGATION HISTORY STACK ───────────────────────────────────────────────
+const navHistory = [];
+let currentPage = 'home';
+
+const PAGE_LABELS = {
+  home: '🏠 Home',
+  authors: '👤 Authors',
+  genres: '🏷️ Genres',
+  reading: '📖 Reading',
+  favorites: '⭐ Favorites',
+  schedule: '📅 Schedule',
+  library: '🗂️ Library',
+  reports: '📊 Reports',
+  settings: '⚙️ Settings'
+};
+
 // ── DATA ──────────────────────────────────────────────────────────────────
 const BOOK_STORIES = {
   1: [
@@ -864,13 +917,6 @@ const BOOK_STORIES = {
     `Rider training was nothing like the histories described. The histories spoke of glory. They did not mention that the first three weeks consisted primarily of being thrown, dragged, and occasionally dropped from increasingly alarming heights while an instructor shouted corrections from a safe distance below. Violet had bruises in shapes she couldn't explain and muscles she hadn't known she possessed.\n\nXaden was everywhere she didn't want him to be. He appeared at the training yard when she was struggling with the harness sequences. He appeared at the dining hall when she was trying to eat in peace. He never helped. He observed, with the focused attention of someone cataloguing weaknesses.\n\nThe war games changed things. Violet had grown up reading strategy manuals the way other children read fairy tales. "You're going to get us all killed with that plan," she told Ridoc. He blinked. "I haven't presented a plan yet." "I know," she said. "I'm preemptively saving us." They won. It was not graceful but they won, and afterward Xaden looked at her across the courtyard with an expression she still couldn't read.`,
     `The letter arrived on a Tuesday. Violet recognized her mother's seal and felt the familiar weight of dread that her mother's correspondence always carried. The letter was brief, as her mother's letters always were, and it said, in essence, that Violet needed to stop making herself conspicuous.\n\nShe burned it in the small hours of the morning, in the courtyard where the sentry rotation had a blind spot she had mapped in her second week. Tairn found her there, settling beside her with the careful deliberateness of something very large trying not to cause damage.\n\n"My mother thinks I'm going to get myself killed," she told him. "Your mother is not wrong," he said. "That's not helpful." "It was not intended to be helpful. It was intended to be accurate."\n\nShe leaned against his side, which was warm in the way that stone holds warmth — deep and slow and from within. She thought about the war that everyone insisted was over and the way the dragons flinched sometimes when they looked north. She thought: whatever is coming, I want to be ready. Tairn said: "Then sleep. Tomorrow I will teach you to fly."`,
     `She did not fly gracefully. She flew the way she did most things — with determination overcompensating for lack of innate talent, her knuckles white on the harness and her jaw set against the wind. Tairn was patient in the way that geological formations are patient: not warm, not encouraging, but present and enduring and very, very unlikely to let her fall.\n\nXaden appeared on her left, Sgaeyl matching pace with Tairn in that effortless way bonded pairs had. "You're overcorrecting on the turns," he said, without preamble. "I'm aware," she said. "Your left hand is three inches higher than your right when you bank." "Also aware." "You could just let Tairn handle it." "I could," she agreed, "but then I wouldn't learn."\n\nShe glanced across at him. This close, with the wind stripping away whatever careful arrangement he made of his expression on the ground, he looked something she couldn't name. Not younger exactly, but less armored. Below them, the war college turned in the morning light, full of its ordinary miracles and its hidden dangers, and Violet Sorrengail flew on into whatever came next.`
-  ],
-  2: [
-    `The morning Violet Sorrengail walked through the gates of Basgiath War College, the sky was the color of a fresh bruise. She had expected fear. She had expected doubt. What she had not expected was the way every rider candidate around her seemed born of steel and arrogance, shoulders thrown back, eyes scanning the grounds like they already owned them.`,
-    `Between life and death there is a library. Nora Seed had not known this. She had known disappointment in a very comprehensive way, had known the weight of roads not taken and the specific grief of potential unrealized — but she had not known about the library.`,
-    `The Book of Regrets was heavier than it looked. Nora had expected this — she had accumulated, as far as she could tell, rather more regrets than the average person. But the physical weight of the book surprised her, the way the leather cover seemed to carry something dense and specific inside it.`,
-    `She tried twelve lives in what felt like a single evening: the pub landlady in Australia, the geologist in Iceland, the version of herself that had married Dan and moved to the suburbs.`,
-    `The library was fading. She noticed it the way you notice weather changing — gradually, then all at once. The green spines were losing their color.`
   ]
 };
 
@@ -924,6 +970,121 @@ let currentDetailId = null, editingId = null, deletingId = null;
 let readerNovel = null, readerChapterIdx = 0, readerFontSize = 18, readerUseSerif = true;
 let chapterCache = {}, isGenerating = false;
 const CHAPTER_COUNT = 5;
+let activeGenreFilter = null;
+
+// ── BACK BAR ──────────────────────────────────────────────────────────────
+// Build and inject a single back bar into a page view.
+// Removes any existing .back-bar first to guarantee exactly one.
+function injectBackBar(viewId, onBackFn, breadcrumbHTML) {
+  const view = document.getElementById(viewId);
+  if (!view) return;
+  // Remove ALL existing back bars in this view (ensures exactly one)
+  view.querySelectorAll('.back-bar').forEach(el => el.remove());
+
+  const bar = document.createElement('div');
+  bar.className = 'back-bar';
+  bar.innerHTML = `
+    <button class="back-btn" id="backBtn_${viewId}">
+      <span class="back-arrow">←</span> Back
+    </button>
+    <div class="breadcrumb-trail">${breadcrumbHTML}</div>`;
+  view.insertBefore(bar, view.firstChild);
+  document.getElementById('backBtn_' + viewId).addEventListener('click', onBackFn);
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────
+function navigate(page) {
+  if (page === currentPage) return;
+  navHistory.push(currentPage);
+  _navigateTo(page);
+}
+
+function _navigateTo(page) {
+  currentPage = page;
+  document.querySelectorAll('.nav-item[data-page]').forEach(btn =>
+    btn.classList.toggle('active', btn.dataset.page === page));
+  document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+  const el = document.getElementById('view-' + page);
+  if (el) el.classList.add('active');
+
+  // Reset authors sub-view
+  if (page === 'authors') {
+    document.getElementById('authorsMainView').style.display = 'block';
+    document.getElementById('authorBooksView').style.display = 'none';
+  }
+
+  // Inject a single back bar for non-home pages
+  if (page !== 'home' && navHistory.length > 0) {
+    const fromPage = navHistory[navHistory.length - 1];
+    const fromLabel = PAGE_LABELS[fromPage] || fromPage;
+    const currentLabel = PAGE_LABELS[page] || page;
+    const breadcrumb = `<span class="bc-item" id="bcFrom_${page}">${fromLabel}</span>
+      <span class="bc-sep">›</span>
+      <span class="bc-current">${currentLabel}</span>`;
+    injectBackBar('view-' + page, navigateBack, breadcrumb);
+  }
+
+  const renders = {
+    home: renderHome,
+    authors: renderAuthors,
+    genres: renderGenres,
+    reading: renderReadingView,
+    favorites: renderFavorites,
+    schedule: renderSchedule,
+    library: renderLibrary,
+    reports: renderReports
+  };
+  if (renders[page]) renders[page]();
+  window.scrollTo(0, 0);
+}
+
+function navigateBack() {
+  if (navHistory.length === 0) return;
+  const prev = navHistory.pop();
+  currentPage = prev;
+  document.querySelectorAll('.nav-item[data-page]').forEach(btn =>
+    btn.classList.toggle('active', btn.dataset.page === prev));
+  document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+  const el = document.getElementById('view-' + prev);
+  if (el) el.classList.add('active');
+
+  if (prev === 'authors') {
+    document.getElementById('authorsMainView').style.display = 'block';
+    document.getElementById('authorBooksView').style.display = 'none';
+  }
+
+  // Inject back bar for the page we returned to (if it has history behind it)
+  if (prev !== 'home' && navHistory.length > 0) {
+    const fromPage = navHistory[navHistory.length - 1];
+    const fromLabel = PAGE_LABELS[fromPage] || fromPage;
+    const currentLabel = PAGE_LABELS[prev] || prev;
+    const breadcrumb = `<span class="bc-item">${fromLabel}</span>
+      <span class="bc-sep">›</span>
+      <span class="bc-current">${currentLabel}</span>`;
+    injectBackBar('view-' + prev, navigateBack, breadcrumb);
+  } else if (prev !== 'home') {
+    // No more history — remove any lingering back bar
+    document.getElementById('view-' + prev)?.querySelectorAll('.back-bar').forEach(el => el.remove());
+  }
+
+  const renders = {
+    home: renderHome,
+    authors: renderAuthors,
+    genres: renderGenres,
+    reading: renderReadingView,
+    favorites: renderFavorites,
+    schedule: renderSchedule,
+    library: renderLibrary,
+    reports: renderReports
+  };
+  if (renders[prev]) renders[prev]();
+  window.scrollTo(0, 0);
+}
+
+function setFchip(el) {
+  document.querySelectorAll('.fchip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
 
 // ── AUTHOR BOOKS ──────────────────────────────────────────────────────────
 const authorGrads = ['linear-gradient(135deg,#7c3aed,#db2777)','linear-gradient(135deg,#0ea5e9,#6366f1)','linear-gradient(135deg,#f59e0b,#ef4444)','linear-gradient(135deg,#10b981,#3b82f6)','linear-gradient(135deg,#f472b6,#fb923c)','linear-gradient(135deg,#22c55e,#0ea5e9)','linear-gradient(135deg,#a78bfa,#60a5fa)','linear-gradient(135deg,#f43f5e,#f97316)','linear-gradient(135deg,#34d399,#818cf8)','linear-gradient(135deg,#fbbf24,#f472b6)','linear-gradient(135deg,#818cf8,#f472b6)','linear-gradient(135deg,#fb923c,#22c55e)'];
@@ -935,21 +1096,16 @@ function showAuthorBooks(authorName, authorIndex) {
   const avatar = authorAvatars[authorIndex % authorAvatars.length];
   const gc = genreColors[authorNovels[0]?.genre] || genreColors.Fantasy;
 
-  // Build header
   const header = document.getElementById('authorBooksHeader');
   header.innerHTML = `
     <div class="author-books-avatar" style="background:${grad};">${avatar}</div>
     <div class="author-books-info">
       <div class="author-books-name">${authorName}</div>
       <div class="author-books-meta" style="color:${gc.dot};">${authorNovels.length} book${authorNovels.length !== 1 ? 's' : ''} in library · ${authorNovels[0]?.genre || ''}</div>
-    </div>
-    <button class="author-books-back" onclick="backToAuthors()">← All Authors</button>
-  `;
+    </div>`;
 
-  const sectionTitle = document.getElementById('authorBooksSectionTitle');
-  sectionTitle.textContent = `Books by ${authorName}`;
+  document.getElementById('authorBooksSectionTitle').textContent = `Books by ${authorName}`;
 
-  // Render books grid
   const grid = document.getElementById('authorBooksGrid');
   grid.innerHTML = authorNovels.map((n, i) => {
     const ngc = genreColors[n.genre] || genreColors.Fantasy;
@@ -972,22 +1128,40 @@ function showAuthorBooks(authorName, authorIndex) {
     </div>`;
   }).join('');
 
-  // Load covers
   authorNovels.forEach(n => {
     getCover(n, 'M').then(url => applyImg(document.getElementById('ab_img_'+n.id), document.getElementById('ab_ph_'+n.id), url, n.emoji));
   });
 
-  // Toggle views
   document.getElementById('authorsMainView').style.display = 'none';
-  document.getElementById('authorBooksView').style.display = 'block';
-  // Scroll to top of page
-  document.querySelector('.main-content').scrollTop = 0;
+  const abv = document.getElementById('authorBooksView');
+  abv.style.display = 'block';
+
+  // Inject exactly one back bar pointing to Authors list
+  injectBackBar(
+    'view-authors',
+    backToAuthors,
+    `<span class="bc-item" onclick="backToAuthors()">👤 Authors</span>
+     <span class="bc-sep">›</span>
+     <span class="bc-current">📖 ${authorName}</span>`
+  );
+
   window.scrollTo(0, 0);
 }
 
 function backToAuthors() {
   document.getElementById('authorsMainView').style.display = 'block';
   document.getElementById('authorBooksView').style.display = 'none';
+  // Remove the author-books back bar; restore the page-level one if applicable
+  if (navHistory.length > 0) {
+    const fromPage = navHistory[navHistory.length - 1];
+    const fromLabel = PAGE_LABELS[fromPage] || fromPage;
+    const breadcrumb = `<span class="bc-item">${fromLabel}</span>
+      <span class="bc-sep">›</span>
+      <span class="bc-current">👤 Authors</span>`;
+    injectBackBar('view-authors', navigateBack, breadcrumb);
+  } else {
+    document.getElementById('view-authors')?.querySelectorAll('.back-bar').forEach(el => el.remove());
+  }
 }
 
 // ── CHAPTERS ──────────────────────────────────────────────────────────────
@@ -1069,22 +1243,6 @@ function applyImg(imgEl, phEl, url, ph) {
   else { if (imgEl) imgEl.style.display = 'none'; if (phEl) { phEl.style.display = 'flex'; phEl.innerHTML = ph || '📖'; } }
 }
 
-// ── NAVIGATION ────────────────────────────────────────────────────────────
-function navigate(page) {
-  document.querySelectorAll('.nav-item[data-page]').forEach(btn => btn.classList.toggle('active', btn.dataset.page === page));
-  document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
-  const el = document.getElementById('view-' + page);
-  if (el) el.classList.add('active');
-  // When navigating to authors, always reset to the authors list view
-  if (page === 'authors') {
-    document.getElementById('authorsMainView').style.display = 'block';
-    document.getElementById('authorBooksView').style.display = 'none';
-  }
-  const renders = { home:renderHome, authors:renderAuthors, genres:renderGenres, reading:renderReadingView, favorites:renderFavorites, schedule:renderSchedule, library:renderLibrary, reports:renderReports };
-  if (renders[page]) renders[page]();
-}
-function setFchip(el) { document.querySelectorAll('.fchip').forEach(c => c.classList.remove('active')); el.classList.add('active'); }
-
 // ── HOME ──────────────────────────────────────────────────────────────────
 function renderHome() { renderPrevReading(); renderPopular(); renderNewBooks(); renderWriters(); }
 
@@ -1164,7 +1322,7 @@ function renderWriters() {
   const authors = [...new Map(novels.map(n => [n.author, n])).values()].slice(0,12);
   cont.innerHTML = authors.map((n, i) => {
     const cnt = novels.filter(b => b.author === n.author).length;
-    return `<div class="writer-card" style="animation-delay:${i*0.07}s" onclick="navigate('authors');setTimeout(()=>showAuthorBooks('${n.author.replace(/'/g,"\\'")}',${i}),100)">
+    return `<div class="writer-card" style="animation-delay:${i*0.07}s" onclick="navigate('authors');setTimeout(()=>showAuthorBooks('${n.author.replace(/'/g,"\\'")}',${i}),120)">
       <div class="writer-avatar" style="background:${authorGrads[i%authorGrads.length]};border-color:transparent;">${authorAvatars[i]}</div>
       <div class="writer-name">${n.author.split(' ').slice(-1)[0]}</div>
       <div class="writer-books">${cnt} book${cnt>1?'s':''}</div>
@@ -1314,7 +1472,19 @@ function renderSchedule() {
 function renderLibrary(list) {
   const cont = document.getElementById('libraryGrid');
   if (!cont) return;
-  const src = list || novels;
+  const src = list !== undefined ? list : (activeGenreFilter ? novels.filter(n => n.genre === activeGenreFilter) : novels);
+
+  const banner = document.getElementById('genreFilterBanner');
+  const label = document.getElementById('genreFilterLabel');
+  if (activeGenreFilter && banner && label) {
+    banner.classList.add('show');
+    const gc = genreColors[activeGenreFilter] || genreColors.Fantasy;
+    label.textContent = activeGenreFilter;
+    label.style.color = gc.dot;
+  } else if (banner) {
+    banner.classList.remove('show');
+  }
+
   cont.innerHTML = src.map((n,i) => {
     const gc = genreColors[n.genre] || genreColors.Fantasy;
     return `<div class="pop-book-card" id="lib_card_${n.id}" style="animation-delay:${i*0.03}s">
@@ -1342,6 +1512,11 @@ function renderLibrary(list) {
   updateStats();
 }
 
+function clearGenreFilter() {
+  activeGenreFilter = null;
+  renderLibrary(novels);
+}
+
 // ── REPORTS ───────────────────────────────────────────────────────────────
 function renderReports() {
   const gc2 = document.getElementById('genreChart');
@@ -1365,14 +1540,23 @@ function renderReports() {
 
 // ── FILTER / SEARCH ───────────────────────────────────────────────────────
 function filterByGenre(genre, el) {
-  if (el) { document.querySelectorAll('.subject-card').forEach(c => c.classList.remove('active')); el.classList.add('active'); }
+  if (el) {
+    document.querySelectorAll('.subject-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+  activeGenreFilter = genre;
   navigate('library');
-  setTimeout(() => renderLibrary(genre ? novels.filter(n => n.genre === genre) : novels), 50);
 }
+
 function handleSearch(val) {
-  if (!val.trim()) { navigate('home'); return; }
+  if (!val.trim()) {
+    if (currentPage === 'library') { activeGenreFilter = null; renderLibrary(novels); }
+    else { navigate('home'); }
+    return;
+  }
   const q = val.toLowerCase();
   const found = novels.filter(n => n.title.toLowerCase().includes(q) || n.author.toLowerCase().includes(q) || n.genre.toLowerCase().includes(q));
+  activeGenreFilter = null;
   navigate('library');
   setTimeout(() => renderLibrary(found), 50);
 }
@@ -1604,7 +1788,7 @@ function executeDelete() {
     showToast('🗑️ Novel deleted', 'error');
     updateStats(); updateCounts();
     const ap = document.querySelector('.nav-item.active')?.dataset?.page || 'home';
-    navigate(ap);
+    _navigateTo(ap);
   };
   if (card) { card.classList.add('removing'); setTimeout(doDelete, 400); }
   else doDelete();
@@ -1646,6 +1830,7 @@ document.addEventListener('keydown', e => {
     document.getElementById('notifPanel').classList.remove('open');
     if (document.getElementById('readerOverlay').classList.contains('open')) closeReader();
   }
+  if (e.altKey && e.key === 'ArrowLeft' && navHistory.length > 0) navigateBack();
 });
 document.querySelectorAll('.nav-item[data-page]').forEach(btn => btn.addEventListener('click', () => navigate(btn.dataset.page)));
 document.getElementById('addNovelBtn').addEventListener('click', openAddModal);

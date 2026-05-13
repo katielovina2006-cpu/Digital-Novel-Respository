@@ -289,16 +289,6 @@ body {
 .sec-link{font-size:11px;font-weight:600;color:var(--gold);text-decoration:none;cursor:pointer;display:flex;align-items:center;gap:4px;transition:gap 0.2s;}
 .sec-link:hover{gap:8px;}
 
-/* ── SUBJECTS ── */
-.subjects-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:24px;}
-.subject-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;gap:8px;}
-.subject-card:hover{border-color:var(--border2);transform:translateY(-2px);background:var(--card2);}
-.subject-card.active{border-color:var(--gold);background:rgba(232,197,71,0.06);}
-.subj-icon{font-size:18px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0;}
-.subj-name{font-size:11px;font-weight:600;color:var(--text);margin-bottom:1px;}
-.subj-count{font-size:9px;color:var(--text2);}
-.subj-count span{color:var(--gold);font-weight:700;}
-
 /* ── POPULAR GRID ── */
 .popular-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:24px;}
 .pop-book-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);animation:fadeSlideIn 0.5s ease both;position:relative;}
@@ -319,27 +309,6 @@ body {
 .ca-edit:hover{background:var(--gold);transform:scale(1.15);}
 .ca-delete{background:rgba(239,68,68,0.85);color:#fff;}
 .ca-delete:hover{background:#ef4444;transform:scale(1.15);}
-
-/* ── NEW ARRIVALS ── */
-.new-books-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;margin-bottom:24px;}
-.new-books-scroll::-webkit-scrollbar{display:none;}
-.new-book-card{flex-shrink:0;width:104px;cursor:pointer;}
-.new-book-cover{width:104px;height:148px;border-radius:11px;overflow:hidden;position:relative;box-shadow:0 8px 28px rgba(0,0,0,0.45);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s;margin-bottom:7px;}
-.new-book-card:hover .new-book-cover{transform:translateY(-9px) rotate(-1.5deg);box-shadow:0 20px 50px rgba(0,0,0,0.6);}
-.new-book-cover img{width:100%;height:100%;object-fit:cover;}
-.new-book-cover-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:32px;}
-.new-book-label{position:absolute;top:7px;left:7px;background:var(--gold);color:#000;font-size:7.5px;font-weight:800;padding:2px 6px;border-radius:4px;letter-spacing:0.5px;}
-.new-book-title{font-size:10px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.new-book-author{font-size:9px;color:var(--text3);}
-
-/* ── WRITERS ── */
-.writers-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;margin-bottom:24px;scrollbar-width:none;}
-.writers-row::-webkit-scrollbar{display:none;}
-.writer-card{flex-shrink:0;text-align:center;cursor:pointer;width:62px;}
-.writer-avatar{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 6px;border:2px solid var(--border);transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);}
-.writer-card:hover .writer-avatar{transform:scale(1.12);border-color:var(--gold);box-shadow:0 0 18px var(--gold-glow);}
-.writer-name{font-size:9px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.writer-books{font-size:8px;color:var(--text3);}
 
 /* ── AUTHORS PAGE ── */
 .authors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
@@ -406,7 +375,7 @@ body {
 
 /* ── READING VIEW ── */
 .reading-list{display:flex;flex-direction:column;gap:10px;}
-.reading-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:all 0.25s;}
+.reading-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:all 0.25px;}
 .reading-item:hover{border-color:var(--border2);transform:translateX(4px);}
 .reading-cover{width:50px;height:68px;border-radius:7px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;}
 .reading-cover img{width:100%;height:100%;object-fit:cover;}
@@ -587,9 +556,9 @@ body {
 .clear-filter-btn:hover { background: var(--card2); color: var(--text); }
 
 /* ── RESPONSIVE ── */
-@media(max-width:1200px){.popular-grid{grid-template-columns:repeat(4,1fr);}.subjects-grid{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:900px){.popular-grid{grid-template-columns:repeat(3,1fr);}.subjects-grid{grid-template-columns:repeat(2,1fr);}.fav-grid{grid-template-columns:repeat(3,1fr);}.authors-grid{grid-template-columns:repeat(3,1fr);}.genres-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.popular-grid{grid-template-columns:repeat(2,1fr);}.subjects-grid{grid-template-columns:repeat(2,1fr);}.genres-grid{grid-template-columns:1fr;}.chapter-sidebar{display:none;}.fav-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:1200px){.popular-grid{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:900px){.popular-grid{grid-template-columns:repeat(3,1fr);}.fav-grid{grid-template-columns:repeat(3,1fr);}.authors-grid{grid-template-columns:repeat(3,1fr);}.genres-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.popular-grid{grid-template-columns:repeat(2,1fr);}.genres-grid{grid-template-columns:1fr;}.chapter-sidebar{display:none;}.fav-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -689,19 +658,6 @@ body {
     </div>
     <div class="sec-header"><div class="sec-title">Popular Books</div><a class="sec-link" onclick="navigate('library')">Show all →</a></div>
     <div class="popular-grid" id="popularGrid"></div>
-    <div class="sec-header"><div class="sec-title">Browse Subjects</div><a class="sec-link" onclick="navigate('genres')">Show all →</a></div>
-    <div class="subjects-grid">
-      <div class="subject-card active" onclick="filterByGenre('Fantasy',this)"><div class="subj-icon" style="background:rgba(34,197,94,0.12);">🐉</div><div><div class="subj-name">Fantasy</div><div class="subj-count"><span id="fcnt">5</span> books</div></div></div>
-      <div class="subject-card" onclick="filterByGenre('Romance',this)"><div class="subj-icon" style="background:rgba(244,114,182,0.12);">💕</div><div><div class="subj-name">Romance</div><div class="subj-count"><span id="rcnt">5</span> books</div></div></div>
-      <div class="subject-card" onclick="filterByGenre('Horror',this)"><div class="subj-icon" style="background:rgba(239,68,68,0.12);">💀</div><div><div class="subj-name">Horror</div><div class="subj-count"><span id="hcnt">5</span> books</div></div></div>
-      <div class="subject-card" onclick="filterByGenre('Action',this)"><div class="subj-icon" style="background:rgba(96,165,250,0.12);">⚡</div><div><div class="subj-name">Action</div><div class="subj-count"><span id="acnt">5</span> books</div></div></div>
-      <div class="subject-card" onclick="filterByGenre('Biography',this)"><div class="subj-icon" style="background:rgba(251,146,60,0.12);">📜</div><div><div class="subj-name">Biography</div><div class="subj-count"><span id="bcnt">5</span> books</div></div></div>
-      <div class="subject-card" onclick="navigate('library')"><div class="subj-icon" style="background:rgba(167,139,250,0.12);">🌐</div><div><div class="subj-name">All Books</div><div class="subj-count"><span id="allcnt">25</span> total</div></div></div>
-    </div>
-    <div class="sec-header"><div class="sec-title">New Arrivals</div><a class="sec-link" onclick="navigate('library')">Show all →</a></div>
-    <div class="new-books-scroll" id="newBooksScroll"></div>
-    <div class="sec-header"><div class="sec-title">Writers & Authors</div><a class="sec-link" onclick="navigate('authors')">Show all →</a></div>
-    <div class="writers-row" id="writersRow"></div>
   </div>
 
   <!-- AUTHORS VIEW -->
@@ -711,7 +667,6 @@ body {
       <div class="authors-grid" id="authorsGrid"></div>
     </div>
     <div id="authorBooksView" style="display:none;">
-      <!-- Back bar + header injected dynamically -->
       <div class="author-books-header" id="authorBooksHeader"></div>
       <div class="sec-header" style="margin-bottom:13px;">
         <div class="sec-title" id="authorBooksSectionTitle">Books by this Author</div>
@@ -893,23 +848,17 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
-// ── NAVIGATION HISTORY STACK ───────────────────────────────────────────────
+// ── NAVIGATION HISTORY STACK ──
 const navHistory = [];
 let currentPage = 'home';
 
 const PAGE_LABELS = {
-  home: '🏠 Home',
-  authors: '👤 Authors',
-  genres: '🏷️ Genres',
-  reading: '📖 Reading',
-  favorites: '⭐ Favorites',
-  schedule: '📅 Schedule',
-  library: '🗂️ Library',
-  reports: '📊 Reports',
-  settings: '⚙️ Settings'
+  home: '🏠 Home', authors: '👤 Authors', genres: '🏷️ Genres',
+  reading: '📖 Reading', favorites: '⭐ Favorites', schedule: '📅 Schedule',
+  library: '🗂️ Library', reports: '📊 Reports', settings: '⚙️ Settings'
 };
 
-// ── DATA ──────────────────────────────────────────────────────────────────
+// ── DATA ──
 const BOOK_STORIES = {
   1: [
     `The morning Violet Sorrengail walked through the gates of Basgiath War College, the sky was the color of a fresh bruise. She had expected fear. She had expected doubt. What she had not expected was the way every rider candidate around her seemed born of steel and arrogance, shoulders thrown back, eyes scanning the grounds like they already owned them. Violet adjusted the strap of her satchel and reminded herself that her mother had not raised her to flinch.\n\nThe Parapet loomed ahead — a narrow stone bridge that crossed a canyon so deep the bottom existed only in rumor. All around her, candidates who had trained their whole lives for this moment were whispering prayers to gods who probably had better things to do. Violet was twenty feet from the edge when a hand shot out and grabbed her arm. "You don't belong here, scribe," said a voice like a drawn blade. She turned to find Xaden Riorson staring down at her with golden eyes that held all the warmth of a November storm.\n\n"Neither do you," she said, and stepped onto the Parapet.\n\nThe wind hit her like a physical thing. Below her, the canyon breathed cold air upward in slow, invisible waves, and for a moment the world tilted sideways. She thought of her sister Mira's advice: don't look down. She thought of her mother's command: don't fail. She made it across. Her hands were shaking too badly for triumph. But she made it, and when she turned around, Xaden Riorson was watching her with something in his expression that was not quite contempt and not quite respect and was somehow, inexplicably, more dangerous than either.`,
@@ -921,7 +870,7 @@ const BOOK_STORIES = {
 };
 
 const genreColors = {
-  Fantasy: { bg:'linear-gradient(135deg,#064e3b,#065f46)', dot:'#22c55e', badge:'rgba(34,197,94,0.15)', btext:'#22c55e' },
+  Fantasy:  { bg:'linear-gradient(135deg,#064e3b,#065f46)', dot:'#22c55e', badge:'rgba(34,197,94,0.15)', btext:'#22c55e' },
   Romance:  { bg:'linear-gradient(135deg,#831843,#9d174d)', dot:'#f472b6', badge:'rgba(244,114,182,0.15)', btext:'#f472b6' },
   Horror:   { bg:'linear-gradient(135deg,#7f1d1d,#991b1b)', dot:'#ef4444', badge:'rgba(239,68,68,0.15)', btext:'#ef4444' },
   Action:   { bg:'linear-gradient(135deg,#1e3a5f,#1d4ed8)', dot:'#60a5fa', badge:'rgba(96,165,250,0.15)', btext:'#60a5fa' },
@@ -972,15 +921,11 @@ let chapterCache = {}, isGenerating = false;
 const CHAPTER_COUNT = 5;
 let activeGenreFilter = null;
 
-// ── BACK BAR ──────────────────────────────────────────────────────────────
-// Build and inject a single back bar into a page view.
-// Removes any existing .back-bar first to guarantee exactly one.
+// ── BACK BAR ──
 function injectBackBar(viewId, onBackFn, breadcrumbHTML) {
   const view = document.getElementById(viewId);
   if (!view) return;
-  // Remove ALL existing back bars in this view (ensures exactly one)
   view.querySelectorAll('.back-bar').forEach(el => el.remove());
-
   const bar = document.createElement('div');
   bar.className = 'back-bar';
   bar.innerHTML = `
@@ -992,7 +937,7 @@ function injectBackBar(viewId, onBackFn, breadcrumbHTML) {
   document.getElementById('backBtn_' + viewId).addEventListener('click', onBackFn);
 }
 
-// ── NAVIGATION ────────────────────────────────────────────────────────────
+// ── NAVIGATION ──
 function navigate(page) {
   if (page === currentPage) return;
   navHistory.push(currentPage);
@@ -1007,13 +952,11 @@ function _navigateTo(page) {
   const el = document.getElementById('view-' + page);
   if (el) el.classList.add('active');
 
-  // Reset authors sub-view
   if (page === 'authors') {
     document.getElementById('authorsMainView').style.display = 'block';
     document.getElementById('authorBooksView').style.display = 'none';
   }
 
-  // Inject a single back bar for non-home pages
   if (page !== 'home' && navHistory.length > 0) {
     const fromPage = navHistory[navHistory.length - 1];
     const fromLabel = PAGE_LABELS[fromPage] || fromPage;
@@ -1025,14 +968,9 @@ function _navigateTo(page) {
   }
 
   const renders = {
-    home: renderHome,
-    authors: renderAuthors,
-    genres: renderGenres,
-    reading: renderReadingView,
-    favorites: renderFavorites,
-    schedule: renderSchedule,
-    library: renderLibrary,
-    reports: renderReports
+    home: renderHome, authors: renderAuthors, genres: renderGenres,
+    reading: renderReadingView, favorites: renderFavorites,
+    schedule: renderSchedule, library: renderLibrary, reports: renderReports
   };
   if (renders[page]) renders[page]();
   window.scrollTo(0, 0);
@@ -1053,7 +991,6 @@ function navigateBack() {
     document.getElementById('authorBooksView').style.display = 'none';
   }
 
-  // Inject back bar for the page we returned to (if it has history behind it)
   if (prev !== 'home' && navHistory.length > 0) {
     const fromPage = navHistory[navHistory.length - 1];
     const fromLabel = PAGE_LABELS[fromPage] || fromPage;
@@ -1063,19 +1000,13 @@ function navigateBack() {
       <span class="bc-current">${currentLabel}</span>`;
     injectBackBar('view-' + prev, navigateBack, breadcrumb);
   } else if (prev !== 'home') {
-    // No more history — remove any lingering back bar
     document.getElementById('view-' + prev)?.querySelectorAll('.back-bar').forEach(el => el.remove());
   }
 
   const renders = {
-    home: renderHome,
-    authors: renderAuthors,
-    genres: renderGenres,
-    reading: renderReadingView,
-    favorites: renderFavorites,
-    schedule: renderSchedule,
-    library: renderLibrary,
-    reports: renderReports
+    home: renderHome, authors: renderAuthors, genres: renderGenres,
+    reading: renderReadingView, favorites: renderFavorites,
+    schedule: renderSchedule, library: renderLibrary, reports: renderReports
   };
   if (renders[prev]) renders[prev]();
   window.scrollTo(0, 0);
@@ -1086,7 +1017,7 @@ function setFchip(el) {
   el.classList.add('active');
 }
 
-// ── AUTHOR BOOKS ──────────────────────────────────────────────────────────
+// ── AUTHOR BOOKS ──
 const authorGrads = ['linear-gradient(135deg,#7c3aed,#db2777)','linear-gradient(135deg,#0ea5e9,#6366f1)','linear-gradient(135deg,#f59e0b,#ef4444)','linear-gradient(135deg,#10b981,#3b82f6)','linear-gradient(135deg,#f472b6,#fb923c)','linear-gradient(135deg,#22c55e,#0ea5e9)','linear-gradient(135deg,#a78bfa,#60a5fa)','linear-gradient(135deg,#f43f5e,#f97316)','linear-gradient(135deg,#34d399,#818cf8)','linear-gradient(135deg,#fbbf24,#f472b6)','linear-gradient(135deg,#818cf8,#f472b6)','linear-gradient(135deg,#fb923c,#22c55e)'];
 const authorAvatars = ['😊','🧑‍💻','👩‍🎨','🧙‍♂️','👨‍🔬','👩‍🦰','🧔','👩‍🦳','🧕','👨‍🎤','🎭','🌟'];
 
@@ -1096,8 +1027,7 @@ function showAuthorBooks(authorName, authorIndex) {
   const avatar = authorAvatars[authorIndex % authorAvatars.length];
   const gc = genreColors[authorNovels[0]?.genre] || genreColors.Fantasy;
 
-  const header = document.getElementById('authorBooksHeader');
-  header.innerHTML = `
+  document.getElementById('authorBooksHeader').innerHTML = `
     <div class="author-books-avatar" style="background:${grad};">${avatar}</div>
     <div class="author-books-info">
       <div class="author-books-name">${authorName}</div>
@@ -1133,17 +1063,12 @@ function showAuthorBooks(authorName, authorIndex) {
   });
 
   document.getElementById('authorsMainView').style.display = 'none';
-  const abv = document.getElementById('authorBooksView');
-  abv.style.display = 'block';
+  document.getElementById('authorBooksView').style.display = 'block';
 
-  // Inject exactly one back bar pointing to Authors list
-  injectBackBar(
-    'view-authors',
-    backToAuthors,
+  injectBackBar('view-authors', backToAuthors,
     `<span class="bc-item" onclick="backToAuthors()">👤 Authors</span>
      <span class="bc-sep">›</span>
-     <span class="bc-current">📖 ${authorName}</span>`
-  );
+     <span class="bc-current">📖 ${authorName}</span>`);
 
   window.scrollTo(0, 0);
 }
@@ -1151,20 +1076,17 @@ function showAuthorBooks(authorName, authorIndex) {
 function backToAuthors() {
   document.getElementById('authorsMainView').style.display = 'block';
   document.getElementById('authorBooksView').style.display = 'none';
-  // Remove the author-books back bar; restore the page-level one if applicable
   if (navHistory.length > 0) {
     const fromPage = navHistory[navHistory.length - 1];
     const fromLabel = PAGE_LABELS[fromPage] || fromPage;
-    const breadcrumb = `<span class="bc-item">${fromLabel}</span>
-      <span class="bc-sep">›</span>
-      <span class="bc-current">👤 Authors</span>`;
-    injectBackBar('view-authors', navigateBack, breadcrumb);
+    injectBackBar('view-authors', navigateBack,
+      `<span class="bc-item">${fromLabel}</span><span class="bc-sep">›</span><span class="bc-current">👤 Authors</span>`);
   } else {
     document.getElementById('view-authors')?.querySelectorAll('.back-bar').forEach(el => el.remove());
   }
 }
 
-// ── CHAPTERS ──────────────────────────────────────────────────────────────
+// ── CHAPTERS ──
 function getChapterTitles(novel) {
   const t = {
     Fantasy:  ['The Call to Arms','Dragons and Destiny','The First Flight','Shadows of the Keep','Wings of Fate'],
@@ -1180,17 +1102,17 @@ function generateFallbackStory(novel, idx) {
   const titles = getChapterTitles(novel);
   const t = titles[idx];
   const opens = {
-    Fantasy:   'The kingdom had not seen magic in a thousand years, or so the histories claimed.',
-    Romance:   'She was not supposed to be here.',
-    Horror:    'The lights had been on for seventy-two consecutive hours. She had been counting.',
-    Action:    'The mission briefing lasted eleven minutes.',
-    Biography: 'The house she grew up in no longer exists.'
+    Fantasy:'The kingdom had not seen magic in a thousand years, or so the histories claimed.',
+    Romance:'She was not supposed to be here.',
+    Horror:'The lights had been on for seventy-two consecutive hours. She had been counting.',
+    Action:'The mission briefing lasted eleven minutes.',
+    Biography:'The house she grew up in no longer exists.'
   };
   const o = opens[novel.genre] || opens.Fantasy;
   return `${o}\n\nThe chapter of ${novel.title} titled "${t}" finds its characters at a pivotal moment. ${novel.desc}\n\nFor ${novel.author}, the craft has always been in the specifics: the precise weight of a moment, the exact quality of light in a scene. This chapter exemplifies that approach, moving the story forward through accumulation rather than event.\n\nThe world of the novel presses close here. The ${novel.genre.toLowerCase()} elements are in full force — this is the genre's grammar being used fluently, its conventions honored and occasionally subverted.\n\nWhatever came next, it would come. She was not ready, but she had never been ready for the things that had mattered most, and she had survived them anyway.`;
 }
 
-// ── NOTIFICATIONS ─────────────────────────────────────────────────────────
+// ── NOTIFICATIONS ──
 function renderNotifs() {
   const u = NOTIFS.filter(n => n.unread);
   const badge = document.getElementById('notifBadge');
@@ -1220,7 +1142,7 @@ document.addEventListener('click', e => {
   if (p && w && !w.contains(e.target)) p.classList.remove('open');
 });
 
-// ── COVER FETCH ───────────────────────────────────────────────────────────
+// ── COVER FETCH ──
 async function getCover(novel, size = 'M') {
   const key = novel.id + '-' + size;
   if (coverCache[key] !== undefined) return coverCache[key];
@@ -1243,8 +1165,8 @@ function applyImg(imgEl, phEl, url, ph) {
   else { if (imgEl) imgEl.style.display = 'none'; if (phEl) { phEl.style.display = 'flex'; phEl.innerHTML = ph || '📖'; } }
 }
 
-// ── HOME ──────────────────────────────────────────────────────────────────
-function renderHome() { renderPrevReading(); renderPopular(); renderNewBooks(); renderWriters(); }
+// ── HOME ──
+function renderHome() { renderPrevReading(); renderPopular(); }
 
 function renderPrevReading() {
   const cont = document.getElementById('prevReadingScroll');
@@ -1297,40 +1219,7 @@ function renderPopular() {
   });
 }
 
-function renderNewBooks() {
-  const cont = document.getElementById('newBooksScroll');
-  if (!cont) return;
-  const newb = novels.slice(-8);
-  cont.innerHTML = newb.map((n,i) => {
-    const gc = genreColors[n.genre] || genreColors.Fantasy;
-    return `<div class="new-book-card" style="animation-delay:${i*0.07}s" onclick="openDetail(${n.id})">
-      <div class="new-book-cover" style="background:${gc.bg};">
-        <div class="new-book-label">NEW</div>
-        <img id="new_img_${n.id}" src="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        <div id="new_ph_${n.id}" class="new-book-cover-ph">${n.emoji}</div>
-      </div>
-      <div class="new-book-title">${n.title}</div>
-      <div class="new-book-author">${n.author}</div>
-    </div>`;
-  }).join('');
-  newb.forEach(n => getCover(n,'M').then(url => applyImg(document.getElementById('new_img_'+n.id), document.getElementById('new_ph_'+n.id), url, n.emoji)));
-}
-
-function renderWriters() {
-  const cont = document.getElementById('writersRow');
-  if (!cont) return;
-  const authors = [...new Map(novels.map(n => [n.author, n])).values()].slice(0,12);
-  cont.innerHTML = authors.map((n, i) => {
-    const cnt = novels.filter(b => b.author === n.author).length;
-    return `<div class="writer-card" style="animation-delay:${i*0.07}s" onclick="navigate('authors');setTimeout(()=>showAuthorBooks('${n.author.replace(/'/g,"\\'")}',${i}),120)">
-      <div class="writer-avatar" style="background:${authorGrads[i%authorGrads.length]};border-color:transparent;">${authorAvatars[i]}</div>
-      <div class="writer-name">${n.author.split(' ').slice(-1)[0]}</div>
-      <div class="writer-books">${cnt} book${cnt>1?'s':''}</div>
-    </div>`;
-  }).join('');
-}
-
-// ── AUTHORS ───────────────────────────────────────────────────────────────
+// ── AUTHORS ──
 function renderAuthors() {
   const cont = document.getElementById('authorsGrid');
   if (!cont) return;
@@ -1350,7 +1239,7 @@ function renderAuthors() {
   }).join('');
 }
 
-// ── GENRES ────────────────────────────────────────────────────────────────
+// ── GENRES ──
 function renderGenres() {
   const cont = document.getElementById('genresGrid');
   if (!cont) return;
@@ -1374,7 +1263,7 @@ function renderGenres() {
   }).join('');
 }
 
-// ── READING VIEW ──────────────────────────────────────────────────────────
+// ── READING VIEW ──
 function renderReadingView() {
   const cont = document.getElementById('readingList');
   if (!cont) return;
@@ -1411,7 +1300,7 @@ function renderReadingView() {
   });
 }
 
-// ── FAVORITES ─────────────────────────────────────────────────────────────
+// ── FAVORITES ──
 function renderFavorites() {
   const cont = document.getElementById('favGrid');
   if (!cont) return;
@@ -1446,7 +1335,7 @@ function toggleFavModal() {
   }
 }
 
-// ── SCHEDULE ──────────────────────────────────────────────────────────────
+// ── SCHEDULE ──
 function renderSchedule() {
   const cont = document.getElementById('scheduleList');
   if (!cont) return;
@@ -1468,7 +1357,7 @@ function renderSchedule() {
     </div>`).join('');
 }
 
-// ── LIBRARY ───────────────────────────────────────────────────────────────
+// ── LIBRARY ──
 function renderLibrary(list) {
   const cont = document.getElementById('libraryGrid');
   if (!cont) return;
@@ -1512,12 +1401,9 @@ function renderLibrary(list) {
   updateStats();
 }
 
-function clearGenreFilter() {
-  activeGenreFilter = null;
-  renderLibrary(novels);
-}
+function clearGenreFilter() { activeGenreFilter = null; renderLibrary(novels); }
 
-// ── REPORTS ───────────────────────────────────────────────────────────────
+// ── REPORTS ──
 function renderReports() {
   const gc2 = document.getElementById('genreChart');
   const mc = document.getElementById('monthChart');
@@ -1538,12 +1424,8 @@ function renderReports() {
   }
 }
 
-// ── FILTER / SEARCH ───────────────────────────────────────────────────────
+// ── FILTER / SEARCH ──
 function filterByGenre(genre, el) {
-  if (el) {
-    document.querySelectorAll('.subject-card').forEach(c => c.classList.remove('active'));
-    el.classList.add('active');
-  }
   activeGenreFilter = genre;
   navigate('library');
 }
@@ -1561,7 +1443,7 @@ function handleSearch(val) {
   setTimeout(() => renderLibrary(found), 50);
 }
 
-// ── DETAIL MODAL ──────────────────────────────────────────────────────────
+// ── DETAIL MODAL ──
 function openDetail(id) {
   const n = novels.find(x => x.id === id);
   if (!n) return;
@@ -1583,7 +1465,7 @@ function closeDetailModal() { document.getElementById('detailModal').classList.r
 function editCurrentBook() { closeDetailModal(); if (currentDetailId) setTimeout(() => openEditModal(currentDetailId), 200); }
 function confirmDeleteCurrent() { closeDetailModal(); if (currentDetailId) setTimeout(() => confirmDelete(currentDetailId), 200); }
 
-// ── READER ────────────────────────────────────────────────────────────────
+// ── READER ──
 function startReading() {
   if (!currentDetailId) return;
   const novel = novels.find(n => n.id === currentDetailId);
@@ -1709,7 +1591,7 @@ function applyReaderFont() {
   p.style.fontFamily = readerUseSerif ? '"Lora",serif' : '"Plus Jakarta Sans",sans-serif';
 }
 
-// ── ADD / EDIT MODAL ──────────────────────────────────────────────────────
+// ── ADD / EDIT MODAL ──
 function openAddModal() {
   editingId = null;
   document.getElementById('addModalHeadline').textContent = 'Add a Novel';
@@ -1749,7 +1631,7 @@ function saveEdit() {
   ['S','M','L'].forEach(s => { delete coverCache[editingId+'-'+s]; });
   closeAddModal();
   showToast('✏️ Novel updated!');
-  updateStats(); updateCounts();
+  updateStats();
   const ap = document.querySelector('.nav-item.active')?.dataset?.page || 'home';
   navigate(ap);
   editingId = null;
@@ -1764,10 +1646,10 @@ function addNovel() {
   novels.push({ id:Date.now(), title, author:author||'Unknown', genre, desc:desc||'No description.', emoji });
   closeAddModal();
   showToast('✅ Novel added to library!');
-  updateStats(); updateCounts();
+  updateStats();
 }
 
-// ── DELETE ────────────────────────────────────────────────────────────────
+// ── DELETE ──
 function confirmDelete(id) {
   const n = novels.find(x => x.id === id);
   if (!n) return;
@@ -1786,7 +1668,7 @@ function executeDelete() {
     favorites = favorites.filter(f => f !== id);
     closeConfirmModal();
     showToast('🗑️ Novel deleted', 'error');
-    updateStats(); updateCounts();
+    updateStats();
     const ap = document.querySelector('.nav-item.active')?.dataset?.page || 'home';
     _navigateTo(ap);
   };
@@ -1794,14 +1676,12 @@ function executeDelete() {
   else doDelete();
 }
 
-// ── UTILS ─────────────────────────────────────────────────────────────────
+// ── UTILS ──
 function updateStats() {
-  ['settTotalBooks'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = novels.length; });
-  const allcnt = document.getElementById('allcnt'); if (allcnt) allcnt.textContent = novels.length;
-}
-function updateCounts() {
-  const map = {Fantasy:'fcnt',Romance:'rcnt',Horror:'hcnt',Action:'acnt',Biography:'bcnt'};
-  Object.entries(map).forEach(([g,id]) => { const el = document.getElementById(id); if (el) el.textContent = novels.filter(n => n.genre === g).length; });
+  const el = document.getElementById('settTotalBooks');
+  if (el) el.textContent = novels.length;
+  const allcnt = document.getElementById('allcnt');
+  if (allcnt) allcnt.textContent = novels.length;
 }
 function showToast(msg, type = '') {
   const t = document.getElementById('toast');
@@ -1811,7 +1691,7 @@ function showToast(msg, type = '') {
   t._timer = setTimeout(() => { t.className = 'toast'; }, 2800);
 }
 
-// ── SPLASH ────────────────────────────────────────────────────────────────
+// ── SPLASH ──
 function initSplash() {
   setTimeout(() => {
     const s = document.getElementById('splashScreen');
@@ -1820,7 +1700,7 @@ function initSplash() {
   }, 2900);
 }
 
-// ── EVENT LISTENERS ───────────────────────────────────────────────────────
+// ── EVENT LISTENERS ──
 document.getElementById('detailModal').addEventListener('click', e => { if (e.target === document.getElementById('detailModal')) closeDetailModal(); });
 document.getElementById('addModal').addEventListener('click', e => { if (e.target === document.getElementById('addModal')) closeAddModal(); });
 document.getElementById('confirmModal').addEventListener('click', e => { if (e.target === document.getElementById('confirmModal')) closeConfirmModal(); });
@@ -1835,11 +1715,10 @@ document.addEventListener('keydown', e => {
 document.querySelectorAll('.nav-item[data-page]').forEach(btn => btn.addEventListener('click', () => navigate(btn.dataset.page)));
 document.getElementById('addNovelBtn').addEventListener('click', openAddModal);
 
-// ── INIT ──────────────────────────────────────────────────────────────────
+// ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
   initSplash();
   renderHome();
-  updateCounts();
   updateStats();
   renderNotifs();
   document.getElementById('fontToggleBtn').classList.add('active');
